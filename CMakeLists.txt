@@ -9,14 +9,20 @@ set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -std=c++17 -O0")
 
 #variables
 set(SRC_PATH "src/")
+SET(APP_EXE fimages)
 
 #sources
-add_executable(fimages
-        example/example.cpp
+ADD_LIBRARY(fun-image-lib STATIC
         ${SRC_PATH}images.cpp
         ${SRC_PATH}coordinate.cpp
         ${SRC_PATH}color.cpp
         ${SRC_PATH}bmp.cpp)
+
+add_executable(${APP_EXE}
+        example/example.cpp
+)
+
+target_link_libraries(${APP_EXE} fun-image-lib)
 
 #doxygen
 find_package(Doxygen)
