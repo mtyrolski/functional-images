@@ -1,4 +1,5 @@
 #include "../src/functional.hpp"
+#include <cassert>
 
 int main()
 {
