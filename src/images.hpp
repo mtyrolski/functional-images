@@ -37,10 +37,10 @@ Base_image<T> rotate(const Base_image<T> &image, double phi) {
 }
 
 template <class T>
-Base_image<T> translate(const Base_image<T> &image, const Vector &v) {
+Base_image<T> translate(const Base_image<T> &image, const Vec2 &v) {
   using namespace std::placeholders;
 
-  auto fun = [](const Point p, const Base_image<T> &image, const Vector &v) {
+  auto fun = [](const Point p, const Base_image<T> &image, const Vec2 &v) {
     assert(!p.is_polar);
     return image(Point(p.first - v.first, p.second - v.second));
   };
