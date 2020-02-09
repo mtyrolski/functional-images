@@ -7,6 +7,14 @@ scale freely and easily apply some transformations.
 
 Even more generalized concept of the image are so-called functional images
 functional images), which are functions R^2 -> A, where A in a special case can be a set of colors.
+### Demo
+* Rotated vertical stripe with colors caribbean blue and blue
+<img align="center" width="350px" src= "/img/rotate.bmp">
+
+* Polar checker with colors caribbean blue and blue and 4 parts
+<img align="center" width="350px" src= "/img/polar_checker.bmp">
+
+<br>
 
 ### Tech
 * [C++17] - Project was written in CPP17 standard, especially using functional and meta programming.
