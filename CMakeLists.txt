@@ -12,11 +12,9 @@ set(SRC_PATH "src/")
 
 #sources
 add_executable(fimages
-        ${SRC_PATH}functional.hpp
-        ${SRC_PATH}images.hpp
         ${SRC_PATH}images.cpp
-        ${SRC_PATH}coordinate.hpp
-        ${SRC_PATH}coordinate.cpp)
+        ${SRC_PATH}coordinate.cpp
+        ${SRC_PATH}color.cpp)
 
 #doxygen
 find_package(Doxygen)
