@@ -5,9 +5,9 @@
 #include <cmath>
 #include <functional>
 
-#include "color.h"
-#include "coordinate.h"
-#include "functional.h"
+#include "color.hpp"
+#include "coordinate.hpp"
+#include "functional.hpp"
 
 using Fraction = double;
 
