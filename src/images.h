@@ -70,4 +70,65 @@ Base_image<T> circle(const Point q, double r, const T &inner, const T &outer) {
   return std::bind(fun, _1, q, r, inner, outer);
 }
 
+template <class T>
+Base_image<T> vertical_stripe(double d, const T &this_way, const T &that_way) {
+  using namespace std::placeholders;
+
+  const double dhalf = d / 2;
+  auto fun = [](const Point p, double dhalf, const T &this_way,
+                const T &that_way) {
+    return std::abs(p.first) <= dhalf ? this_way : that_way;
+  };
+
+  return std::bind(fun, _1, dhalf, this_way, that_way);
+}
+
+template <class T>
+Base_image<T> checker(double d, const T &this_way, const T &that_way) {
+  using namespace std::placeholders;
+
+  auto fun = [](const Point p, const T &this_way, const T &that_way) {
+    return (static_cast<int64_t>(std::floor(p.first)) +
+            static_cast<int64_t>(std::floor(p.second))) %
+                   2
+               ? that_way
+               : this_way;
+  };
+
+  Base_image<T> unitchecker = std::bind(fun, _1, this_way, that_way);
+  return scale(unitchecker, d);
+}
+
+template <class T>
+Base_image<T> polar_checker(double d, int n, const T &this_way,
+                            const T &that_way) {
+  using namespace std::placeholders;
+  static constexpr double mul_stripes = 2.0;
+
+  auto fun = [](const Point p, double d, int n) {
+    return Point(p.first, d * n * p.second / (mul_stripes * M_PI));
+  };
+
+  return compose(to_polar, std::bind(fun, _1, d, n),
+                 checker(d, this_way, that_way));
+}
+
+template <class T>
+Base_image<T> rings(const Point q, double d, const T &this_way,
+                    const T &that_way) {
+  using namespace std::placeholders;
+
+  auto fun = [](const Base_image<T> &image, const Point q) {
+    return translate(image, {q.first, q.second});
+  };
+
+  return std::bind(fun, _1, q)(static_cast<Base_image<T>>(
+      compose(to_polar, checker(d, this_way, that_way))));
+}
+
+Image cond(const Region &region, const Image &this_way, const Image &that_way);
+Image lerp(const Blend &blend, const Image &this_way, const Image &that_way);
+Image darken(const Image &image, const Blend &blend);
+Image lighten(const Image &image, const Blend &blend);
+
 #endif // FUNCTIONAL_IMAGES_H
