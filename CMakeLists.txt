@@ -12,6 +12,7 @@ set(SRC_PATH "src/")
 
 #sources
 add_executable(fimages
+        example/example.cpp
         ${SRC_PATH}images.cpp
         ${SRC_PATH}coordinate.cpp
         ${SRC_PATH}color.cpp
