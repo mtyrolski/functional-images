@@ -32,4 +32,8 @@ template <> inline auto compose<>() {
   return [](const auto &T) { return T; };
 }
 
+template <typename H, typename... Fs> auto lift(H h, Fs... fs) {
+  return [h, fs...](auto p) { return h(fs(p)...); };
+}
+
 #endif // FUNCTIONAL_FUNCTIONAL_H
