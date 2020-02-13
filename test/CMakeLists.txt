@@ -1,12 +1,25 @@
 include_directories (${TEST_SOURCE_DIR}/src)
 
-add_executable(functional_test functional_test.cpp)
+add_executable(fun_test_1 functional_test1.cpp)
+add_executable(fun_test_2 functional_test2.cpp)
+add_executable(fun_test_3 functional_test3.cpp)
+add_executable(img_test_1 images_test1.cpp)
+add_executable(img_test_2 images_test2.cpp)
+add_executable(img_test_3 images_test3.cpp)
+add_executable(img_test_4 images_test4.cpp)
 
-target_link_libraries(functional_test
-        fun-image-lib
-        ${Boost_FILESYSTEM_LIBRARY}
-        ${Boost_SYSTEM_LIBRARY}
-        ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
-        )
+target_link_libraries(fun_test_1 fun-image-lib)
+target_link_libraries(fun_test_2 fun-image-lib)
+target_link_libraries(fun_test_3 fun-image-lib)
+target_link_libraries(img_test_1 fun-image-lib)
+target_link_libraries(img_test_2 fun-image-lib)
+target_link_libraries(img_test_3 fun-image-lib)
+target_link_libraries(img_test_4 fun-image-lib)
 
-add_test(NAME functional_test COMMAND functional_test)
+add_test(NAME fun_test_1 COMMAND fun_test_1)
+add_test(NAME fun_test_2 COMMAND fun_test_2)
+add_test(NAME fun_test_3 COMMAND fun_test_3)
+add_test(NAME img_test_1 COMMAND img_test_1)
+add_test(NAME img_test_2 COMMAND img_test_2)
+add_test(NAME img_test_3 COMMAND img_test_3)
+add_test(NAME img_test_4 COMMAND img_test_4)
